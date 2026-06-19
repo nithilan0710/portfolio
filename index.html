@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nithilan Saravanan – Engineer & Maker</title>
+  <meta name="description" content="Portfolio of Nithilan Saravanan – Embedded Systems, PCB Design, IoT, Wearable Tech" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --beige-bg:      #F5F0E8;
+      --beige-card:    #EDE8DF;
+      --beige-border:  #917746;
+      --ink:           #1C1A17;
+      --ink-muted:     #5A5448;
+      --ink-faint:     #9A9080;
+      --accent:        #B85C2A;       /* warm terracotta-rust */
+      --accent-soft:   #F0E4D8;
+      --accent-2:      #3D6B5E;       /* deep patina green */
+      --nav-bg:        rgba(245,240,232,0.96);
+      --nav-border:    #C8C0B0;
+      --radius-sm:     6px;
+      --radius-md:     12px;
+      --shadow-card:   0 2px 16px rgba(28,26,23,0.08);
+      --transition:    0.22s ease;
+      --nav-h:         64px;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--beige-bg);
+      color: var(--ink);
+      line-height: 1.6;
+      padding-bottom: calc(var(--nav-h) + 24px);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    /* ── HERO HEADER ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 24px 40px;
+    }
+    .hero-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--beige-card);
+      border: 3px solid var(--beige-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .hero-photo svg {
+      width: 80px;
+      height: 80px;
+      opacity: 0.35;
+    }
+    .hero-text {}
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .hero-name {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .hero-role {
+      font-size: 1rem;
+      color: var(--ink-muted);
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+    .hero-tagline {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      margin-bottom: 20px;
+      max-width: 520px;
+    }
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border: 1.5px solid var(--beige-border);
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink-muted);
+      transition: all var(--transition);
+      background: var(--beige-card);
+    }
+    .hero-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+    .hero-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      max-width: 960px;
+      margin: 0 auto;
+      height: 1px;
+      background: var(--beige-border);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 56px 24px 0;
+    }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .about-bio p {
+      color: var(--ink-muted);
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      text-align: justify;
+    }
+    .about-details {}
+    .detail-row {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--beige-border);
+      font-size: 0.875rem;
+    }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label {
+      font-weight: 600;
+      color: var(--ink);
+      min-width: 80px;
+      flex-shrink: 0;
+    }
+    .detail-val { color: var(--ink-muted); }
+    .detail-val a:hover { color: var(--accent); text-decoration: underline; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .skill-group {
+      background: var(--beige-card);
+      border: 1px solid var(--beige-border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+    .skill-group-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .skill-tag {
+      background: var(--beige-bg);
+      border: 1px solid var(--beige-border);
+      border-radius: 100px;
+      padding: 3px 10px;
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    /* ── TIMELINE (experience / education) ── */
+    .timeline { position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 14px;
+      top: 8px;
+      bottom: 0;
+      width: 2px;
+      background: var(--beige-border);
+    }
+    .tl-item {
+      display: grid;
+      grid-template-columns: 30px 1fr;
+      gap: 0 16px;
+      margin-bottom: 32px;
+    }
+    .tl-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--beige-bg);
+      margin-top: 6px;
+      margin-left: 9px;
+      position: relative;
+      z-index: 1;
+      flex-shrink: 0;
+    }
+    .tl-body {}
+    .tl-period {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .tl-role {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+    .tl-org {
+      font-size: 0.875rem;
+      color: var(--accent-2);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .tl-bullets {
+      padding-left: 0;
+    }
+    .tl-bullets li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      margin-bottom: 6px;
+      text-align: justify;
+    }
+    .tl-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+      top: 2px;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .project-card {
+      background: var(--beige-card);
+      border: 1px solid var(--beige-border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      transition: all var(--transition);
+      box-shadow: var(--shadow-card);
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(184,92,42,0.12);
+      transform: translateY(-2px);
+    }
+    .project-period {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 6px;
+    }
+    .project-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .project-sub {
+      font-size: 0.75rem;
+      color: var(--accent-2);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .project-desc {
+      font-size: 0.825rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+    }
+
+    /* ── PATENTS / PUBLICATIONS ── */
+    .pub-list { display: flex; flex-direction: column; gap: 16px; }
+    .pub-item {
+      background: var(--beige-card);
+      border: 1px solid var(--beige-border);
+      border-left: 3px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+    }
+    .pub-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .pub-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--ink);
+      margin-bottom: 4px;
+      line-height: 1.45;
+    }
+    .pub-meta {
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+    }
+
+    /* ── AWARDS ── */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .award-card {
+      background: var(--beige-card);
+      border: 1px solid var(--beige-border);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .award-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 2px;
+    }
+    .award-text {}
+    .award-title {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+    .award-detail {
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-soft);
+      border: 1px solid var(--beige-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+    .contact-icon svg { width: 18px; height: 18px; }
+    .contact-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 3px;
+    }
+    .contact-val {
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+    .contact-val a:hover { color: var(--accent); text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    .footer {
+      max-width: 960px;
+      margin: 40px auto 0;
+      padding: 24px;
+      border-top: 1px solid var(--beige-border);
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--ink-faint);
+    }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      background: var(--nav-bg);
+      border-top: 1px solid var(--nav-border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      z-index: 999;
+      box-shadow: 0 -4px 20px rgba(28,26,23,0.08);
+    }
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      color: var(--ink-muted);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all var(--transition);
+      border: 1.5px solid transparent;
+      min-width: 70px;
+    }
+    .nav-item svg { width: 18px; height: 18px; }
+    .nav-item:hover { color: var(--accent); background: var(--accent-soft); border-color: var(--beige-border); }
+    .nav-item.active { color: var(--accent); background: var(--accent-soft); border-color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 680px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 40px 20px 32px; }
+      .hero-photo { margin: 0 auto; width: 140px; height: 140px; }
+      .hero-links { justify-content: center; }
+      .about-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-item { padding: 6px 10px; min-width: 54px; font-size: 0.6rem; }
+      .nav-item span { display: none; }
+    }
+    @media (max-width: 480px) {
+      .nav-item { padding: 6px 8px; min-width: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<header id="home" class="hero">
+  <div class="hero-photo">
+    <img src="nithilan-display-picture.png" alt="Nithilan Saravanan" style="width:100%;height:100%;object-fit:cover;" />
+  </div>
+  <div class="hero-text">
+    <div class="hero-tag">Engineer · Maker · Innovator</div>
+    <h1 class="hero-name">Nithilan Saravanan</h1>
+    <p class="hero-role">Electronics Product Developer | Embedded & IoT Freelancer <br/> Rapid Prototyping & 3D Design | Fitness Lifestyle Enthusiast</p>
+    <p class="hero-tagline">   </p>
+    <div class="hero-links">
+      <a href="mailto:info.nithilan@gmail.com" class="hero-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 8 10-8"/></svg>
+        Email
+      </a>
+      <a href="https://linkedin.com/in/nithilansaravanan" target="_blank" class="hero-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/nithilan0710" target="_blank" class="hero-link">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="section-divider"></div>
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════ -->
+<section id="about" class="section">
+  <div class="section-label">01 — Who I Am</div>
+  <h2 class="section-title">About Me</h2>
+    <div class="about-bio">
+      <p>Electronics and Communication Engineering graduate with hands-on experience in Product development, PCB design, firmware development, rapid prototyping, and hardware validation through internships and multidisciplinary engineering projects.</p>
+      <p>I've worked across industrial IoT, Agri-Tech, wearable health monitoring, and assistive technology — always with a strong focus on practical problem-solving and real-world product implementation.</p>
+      <p>Published patent holder with experience in embedded systems, CAD-based design, and iterative hardware development workflows. Actively contributed to electric vehicle, drone, Go-Kart and robotics projects through national-level engineering competitions.</p>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SKILLS
+════════════════════════════════════════════ -->
+<section id="skills" class="section">
+  <div class="section-label">02 — Capabilities</div>
+  <h2 class="section-title">Technical Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Programming</div>
+      <div class="skill-tags">
+        <span class="skill-tag">C</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Shell Scripting</span>
+        <span class="skill-tag">Git</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Embedded Systems</div>
+      <div class="skill-tags">
+        <span class="skill-tag">ESP32 (IDF/Arduino)</span>
+        <span class="skill-tag">STM32 (HAL)</span>
+        <span class="skill-tag">nrF (HAL)</span>
+        <span class="skill-tag">Raspberry Pi</span>
+        <span class="skill-tag">FreeRTOS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Hardware Dev</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PCB Layout</span>
+        <span class="skill-tag">Multi-layer Boards</span>
+        <span class="skill-tag">SMD Soldering</span>
+        <span class="skill-tag">Circuit Simulation</span>
+        <span class="skill-tag">3D Printing (FDM/SLM/SLA)</span>
+        <span class="skill-tag">CO₂ Laser Cutting</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Design Software</div>
+      <div class="skill-tags">
+        <span class="skill-tag">KiCAD</span>
+        <span class="skill-tag">Fusion 360</span>
+        <span class="skill-tag">AutoCAD</span>
+        <span class="skill-tag">NI Multisim</span>
+        <span class="skill-tag">3D Slicer</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Protocols</div>
+      <div class="skill-tags">
+        <span class="skill-tag">UART</span>
+        <span class="skill-tag">I²C</span>
+        <span class="skill-tag">SPI</span>
+        <span class="skill-tag">I²S</span>
+        <span class="skill-tag">MQTT</span>
+        <span class="skill-tag">BLE</span>
+        <span class="skill-tag">ESP-NOW</span>
+        <span class="skill-tag">HTTP/JSON</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Domains</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Industrial IoT</span>
+        <span class="skill-tag">Agri-Tech</span>
+        <span class="skill-tag">Automation</span>
+        <span class="skill-tag">Health Care/Wearable</span>
+        <span class="skill-tag">Robotics</span>
+        <span class="skill-tag">Assistive Tech</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     EXPERIENCE
+════════════════════════════════════════════ -->
+<section id="resume" class="section">
+  <div class="section-label">03 — Career</div>
+  <h2 class="section-title">Experience</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-period">Nov 2025 – Apr 2026</div>
+        <div class="tl-role">Research &amp; Development Engineer</div>
+        <div class="tl-org">Q DoTZ S.T.E.M. India Pvt. Ltd. — Full-time</div>
+        <ul class="tl-bullets">
+          <li>Architected and optimized embedded firmware for next-generation biomedical sensors and wearable integration, focusing on ultra-low power consumption and high-precision data acquisition for health-monitoring prototypes.</li>
+          <li>Developed automated functional testing scripts in Python to validate sensor accuracy, data throughput, and system stability for wellness monitoring modules.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-period">Feb 2025 – Sep 2025</div>
+        <div class="tl-role">R&amp;D Product Intern</div>
+        <div class="tl-org">Brix Networks Pvt. Ltd. — Part-time</div>
+        <ul class="tl-bullets">
+          <li>Spearheaded end-to-end hardware prototyping for industrial IoT nodes including multi-layer schematic design, component selection, BOM optimization, and initial board bring-up.</li>
+          <li>Conducted rigorous hardware validation and reliability testing under diverse environmental conditions to ensure industrial-grade durability of embedded IoT prototypes.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-period">Sep 2023 – Nov 2024</div>
+        <div class="tl-role">Junior CAD &amp; Embedded Engineer Intern</div>
+        <div class="tl-org">Mobitex (MSME 1.0) — Part-time</div>
+        <ul class="tl-bullets">
+          <li>Designed and developed embedded electronics, PCB prototype panels, mechanical enclosures, and firmware for the Mobiloom IoT-enabled textile monitoring system.</li>
+          <li>Contributed to hardware assembly, embedded system integration, and functional validation of the Mobiloom prototype showcased at Startup Mahakumbh 2024, Bharat Mandapam, New Delhi.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title" style="margin-top:40px;">Education</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-period">Nov 2022 – May 2026</div>
+        <div class="tl-role">B.E. Electronics and Communication Engineering</div>
+        <div class="tl-org">K. S. Rangasamy College of Technology, Namakkal, Tamil Nadu</div>
+        <ul class="tl-bullets">
+          <li>CGPA: 8.4 / 10.0</li>
+          <li>Led AICTE Idea Lab as Student Ambassador — multidisciplinary fabrication including PCB, 3D printing, and laser cutting for 200+ participants.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════════ -->
+<section id="projects" class="section">
+  <div class="section-label">04 — Work</div>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-period">Aug 2024 – Nov 2024</div>
+      <div class="project-title">IoT Smart Home Automation (Domotics)</div>
+      <div class="project-sub">ESP32 · RF Design · MQTT</div>
+      <p class="project-desc">Scalable home automation kit with relay drivers, PWM fan speed controls, and MQTT-based low-latency device control. Custom patch antenna overcame RF attenuation in metal enclosures, improving range by 40%+.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-period">Nov 2023 – Jan 2024</div>
+      <div class="project-title">Modular Hexagonal Digital Chess</div>
+      <div class="project-sub">ESP32 · FreeRTOS · Matrix Sensing</div>
+      <p class="project-desc">Modular hexagonal chessboard with a 217-cell sensing matrix supporting dynamic reconfiguration for 2–6 players. ESP32 firmware using FreeRTOS for real-time game sync, OLED updates, and low-latency interrupt handling.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-period">Mar 2024 – May 2024</div>
+      <div class="project-title">Drawing Bot for Flexible PCB Development</div>
+      <div class="project-sub">Robotics · Embedded C · G-code</div>
+      <p class="project-desc">High-precision 2-axis robotic plotter for flexible PCB fabrication using embedded motor control and G-code path planning. Automated conductive trace workflows to accelerate wearable circuit prototyping.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-period">Sep 2023 – Oct 2023</div>
+      <div class="project-title">Tactile Book for the Visually Impaired</div>
+      <div class="project-sub">Assistive Tech · 3D Printing</div>
+      <p class="project-desc">Redesigned tactile educational components reducing sheet thickness from 2mm to under 0.5mm while maintaining durability. Integrated synchronized audio-feedback. Runner-Up at Empower 2023 Student Design Challenge.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-period">SAEISS ETWDC 2024</div>
+      <div class="project-title">EV Battery Health Monitoring Unit</div>
+      <div class="project-sub">ESP32 · Gyroscopic Sensing · Cloud GPS</div>
+      <p class="project-desc">Battery health monitoring unit for SAE EV team featuring gyroscopic stability tracking and cloud-based GPS security for remote vehicle immobilization.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-period">ADDC '24 — 18th Rank</div>
+      <div class="project-title">Autonomous Payload Dropping Drone</div>
+      <div class="project-sub">Team Jetscape 2.0 · Servo · 3D Printed Gripper</div>
+      <p class="project-desc">Technical lead for engineering an autonomous payload dropping mechanism with servo-driven 3D printed grippers. Achieved 18th rank at ADDC '24.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-period">ICAIMLA 2026</div>
+      <div class="project-title">Turmeric Rhizome Planting Rover</div>
+      <div class="project-sub">Precision Agriculture · Robotics</div>
+      <p class="project-desc">Modular low-cost robotic rover for precision turmeric planting. Published at ICAIMLA 2026 — ISBN: 979-8-3195-0634-4.</p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-period">2018–19</div>
+      <div class="project-title">Automated IV Fluid Level Monitor</div>
+      <div class="project-sub">Ultrasonic · Load Cell · Remote Alert</div>
+      <p class="project-desc">Healthcare prototype using ultrasonic sensors and load cell to monitor IV fluid levels and trigger automated remote alerts for hospital staff. Secured Inspire Award Manak seed funding.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     PATENTS & PUBLICATIONS
+════════════════════════════════════════════ -->
+<section id="publications" class="section">
+  <div class="section-label">05 — IP & Research</div>
+  <h2 class="section-title">Patents &amp; Publications</h2>
+  <div class="pub-list">
+    <div class="pub-item">
+      <div class="pub-type">Indian Patent · Oct 2024</div>
+      <div class="pub-title">Cost Effective IoT-Based Electronic Retrofit System for Mechanical Jacquard Weaving Machines with Precision Control</div>
+      <div class="pub-meta">App No. 202441076127</div>
+    </div>
+    <div class="pub-item">
+      <div class="pub-type">Conference Publication · ICAIMLA 2026</div>
+      <div class="pub-title">A Modular Low-Cost Turmeric Rhizome Planting Rover for Precision Agriculture</div>
+      <div class="pub-meta">Raguvaran K, Nithilan S, Ragul Kumar R &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; ISBN: 979-8-3195-0634-4</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     AWARDS & LEADERSHIP
+════════════════════════════════════════════ -->
+<section id="awards" class="section">
+  <div class="section-label">06 — Recognition</div>
+  <h2 class="section-title">Awards &amp; Leadership</h2>
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div class="award-text">
+        <div class="award-title">Runner-Up — Empower 2023</div>
+        <div class="award-detail">Student Design Challenge for tactile book assistive tech</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🤖</div>
+      <div class="award-text">
+        <div class="award-title">3rd Runner-Up — Robo Soccer CELESTA'23, IIT Patna</div>
+        <div class="award-detail">National-level robotics competition with custom-built soccer bot</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">💡</div>
+      <div class="award-text">
+        <div class="award-title">Inspire Award Manak — 2018–19</div>
+        <div class="award-detail">Seed funding secured for automated IV fluid level monitoring healthcare prototype</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">✈️</div>
+      <div class="award-text">
+        <div class="award-title">ADDC '24 — 18th Rank</div>
+        <div class="award-detail">Autonomous Drone Design Challenge as Technical Lead, Team Jetscape 2.0</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🎓</div>
+      <div class="award-text">
+        <div class="award-title">AICTE Idea Lab Student Ambassador</div>
+        <div class="award-detail">Led FDP &amp; SDP fabrication sessions for 200+ participants</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">⚡</div>
+      <div class="award-text">
+        <div class="award-title">Innovation Lead — Meckartronz (Go-Kart)</div>
+        <div class="award-detail">RUSH HOUR 2K23, 11th GKDC, Tamil Nadu Karting Championship Season 02</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🔭</div>
+      <div class="award-text">
+        <div class="award-title">Exhibitor — Startup Mahakumbh 2024</div>
+        <div class="award-detail">Showcased Mobiloom prototype at Bharat Mandapam, New Delhi</div>
+      </div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🌐</div>
+      <div class="award-text">
+        <div class="award-title">IEEE &amp; IETE Member</div>
+        <div class="award-detail">Active member; participated in Envision Energy Conference 2024 &amp; 2025, IITM Research Park</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════ -->
+<section id="contact" class="section">
+  <div class="section-label">07 — Let's Talk</div>
+  <h2 class="section-title">Contact</h2>
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 8 10-8"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-val"><a href="mailto:info.nithilansaravanan@gmail.com">info.nithilan@gmail.com</a></div>
+      </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="footer">
+  <p>© 2026 Nithilan Saravanan· Built with HTML &amp; CSS · Dharmapuri, Tamil Nadu· Built with HTML &amp; CSS · Dharmapuri, Tamil Nadu</p>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     BOTTOM NAV (always on top)
+════════════════════════════════════════════ -->
+<nav class="bottom-nav" id="bottomNav">
+  <a class="nav-item active" href="#home" data-section="home">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Home</span>
+  </a>
+  <a class="nav-item" href="#about" data-section="about">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.582-7 8-7s8 3 8 7"/></svg>
+    <span>About</span>
+  </a>
+  <a class="nav-item" href="#skills" data-section="skills">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <span>Skills</span>
+  </a>
+  <a class="nav-item" href="#resume" data-section="resume">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>
+    <span>Resume</span>
+  </a>
+  <a class="nav-item" href="#projects" data-section="projects">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 13.5V19a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.5"/><path d="M2 10.5V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5.5"/><path d="M12 12v4"/><path d="M8 12h8"/></svg>
+    <span>Projects</span>
+  </a>
+  <a class="nav-item" href="#awards" data-section="awards">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+    <span>Awards</span>
+  </a>
+  <a class="nav-item" href="#contact" data-section="contact">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span>Contact</span>
+  </a>
+</nav>
+
+<script>
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const navItems = document.querySelectorAll('.nav-item[data-section]');
+  const navH = 80;
+
+  function onScroll() {
+    let current = 'home';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - navH - 60) {
+        current = sec.id;
+      }
+    });
+    navItems.forEach(item => {
+      item.classList.toggle('active', item.dataset.section === current);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>
